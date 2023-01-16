@@ -33,8 +33,6 @@ namespace Microsoft.DocAsCode
                     RunMetadata.Exec(value.ToObject<MetadataJsonConfig>(JsonUtility.DefaultSerializer.Value), Path.GetDirectoryName(configPath));
                 if (config.TryGetValue("merge", out value))
                     RunMerge.Exec(value.ToObject<MergeJsonConfig>(JsonUtility.DefaultSerializer.Value));
-                if (config.TryGetValue("pdf", out value))
-                    RunPdf.Exec(value.ToObject<PdfJsonConfig>(JsonUtility.DefaultSerializer.Value));
                 if (config.TryGetValue("build", out value))
                     RunBuild.Exec(value.ToObject<BuildJsonConfig>(JsonUtility.DefaultSerializer.Value));
 
