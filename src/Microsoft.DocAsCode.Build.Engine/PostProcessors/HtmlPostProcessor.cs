@@ -43,6 +43,8 @@ namespace Microsoft.DocAsCode.Build.Engine
                 {
                     Handlers.Add(new RemoveDebugInfo());
                 }
+
+                Handlers.Add(new PrettyUrls());
                 _handlerInitialized = true;
             }
 
