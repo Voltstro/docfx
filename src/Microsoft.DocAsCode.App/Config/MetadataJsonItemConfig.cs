@@ -7,7 +7,7 @@ namespace Microsoft.DocAsCode
 
     using Newtonsoft.Json;
 
-    internal class MetadataJsonItemConfig
+    public class MetadataJsonItemConfig
     {
         [JsonProperty("src")]
         public FileMapping Source { get; set; }

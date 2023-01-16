@@ -10,7 +10,7 @@ using Microsoft.DocAsCode.Plugins;
 
 namespace Microsoft.DocAsCode
 {
-    internal static class RunMetadata
+    public static class RunMetadata
     {
         public static void Exec(MetadataJsonConfig config, string configDirectory, string outputDirectory = null)
         {

@@ -9,7 +9,7 @@ namespace Microsoft.DocAsCode
     using Newtonsoft.Json;
 
     [Serializable]
-    internal class GroupConfig
+    public class GroupConfig
     {
         [JsonProperty("dest")]
         public string Destination { get; set; }

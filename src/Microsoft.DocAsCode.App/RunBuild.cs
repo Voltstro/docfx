@@ -10,7 +10,7 @@ using Microsoft.DocAsCode.SubCommands;
 
 namespace Microsoft.DocAsCode
 {
-    internal static class RunBuild
+    public static class RunBuild
     {
         public static void Exec(BuildJsonConfig config)
         {

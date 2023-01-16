@@ -13,7 +13,7 @@ namespace Microsoft.DocAsCode
     using Newtonsoft.Json.Linq;
 
     [Serializable]
-    internal class BuildJsonConfig
+    public class BuildJsonConfig
     {
         [JsonIgnore]
         private Dictionary<string, GroupConfig> _versions;
