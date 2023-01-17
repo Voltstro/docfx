@@ -15,7 +15,12 @@ public class PrettyUrls : HtmlDocumentHandler
         string outputFile)
     {
         string addToFront = string.Empty;
-        if (manifestItem.OutputFiles[".html"].RelativePath != "index.html")
+
+        string relativePath = manifestItem.OutputFiles[".html"].RelativePath;
+
+        //If this is a root file
+        string fileName = Path.GetFileName(relativePath);
+        if (!relativePath.Equals(fileName, StringComparison.InvariantCultureIgnoreCase))
             addToFront = "../";
 
         var hyperLinkNodes = document.DocumentNode.SelectNodes($"//a");
@@ -28,8 +33,14 @@ public class PrettyUrls : HtmlDocumentHandler
                 if(href == null)
                     continue;
 
-                if(href.Value.EndsWith(".html"))
-                    href.Value = $"{addToFront}{UpdatePath(href.Value, false)}/";
+                //Check for html files
+                if (href.Value.EndsWith(".html"))
+                {
+                    href.Value = Path.Combine(addToFront, UpdatePath(href.Value));
+
+                    href.Value = href.Value.Replace("index/index.html", string.Empty);
+                    href.Value = href.Value.Replace("index.html", string.Empty);
+                }
             }
         }
 
@@ -84,16 +95,13 @@ public class PrettyUrls : HtmlDocumentHandler
         return manifest;
     }
 
-    private static string UpdatePath(string path, bool includeIndexFileName = true)
+    private static string UpdatePath(string path)
     {
-        if (!includeIndexFileName && path == "index.html")
-            return "/";
-
         string? baseDir = Path.GetDirectoryName(path);
 
         //Get just the file name
         string? fileName = Path.GetFileNameWithoutExtension(path);
 
-        return Path.Combine(baseDir, fileName, includeIndexFileName ? "index.html" : string.Empty);
+        return Path.Combine(baseDir, fileName, "index.html").ToLower();
     }
 }

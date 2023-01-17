@@ -35,6 +35,7 @@
     "fileMetadataFiles": [],
     "template": [
       "default",
+      "statictoc",
       "memberpage"
     ],
     "postProcessors": [],
