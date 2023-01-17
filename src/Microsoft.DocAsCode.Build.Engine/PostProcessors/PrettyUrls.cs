@@ -41,6 +41,16 @@ public class PrettyUrls : HtmlDocumentHandler
                     href.Value = href.Value.Replace("index/index.html", string.Empty);
                     href.Value = href.Value.Replace("index.html", string.Empty);
                 }
+                else
+                {
+                    int idTag = href.Value.IndexOf('#');
+                    if(idTag <= 0)
+                        continue;
+
+                    string tag = href.Value[idTag..];
+                    string url = href.Value[..idTag];
+                    href.Value = $"{Path.Combine(addToFront, UpdatePath(url)).Replace("index.html", string.Empty)}{tag}";
+                }
             }
         }
 
